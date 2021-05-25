@@ -1,6 +1,7 @@
 body {
   color: white;
   background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -17,7 +18,48 @@ h1 {
 }
 
 .inputs input {
-  font-size: 2rem;
-  width: 2.2rem;
+  font-size: 3rem;
+  width: 3.3rem;
+  display: inline-block;
+  position: relative;
 }
 
+.inputs label {
+  display: inline-block;
+}
+
+.inputs .group {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.timing {
+  margin: 1rem;
+  font-size: 4rem;
+}
+
+.em-as {
+  margin: auto;
+  padding: auto;
+}
+
+.btns {
+  padding: 1rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 1px 1px 6px white;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn:active {
+  color: black;
+  border: 2px solid black;
+  background-color: white;
+  box-shadow: none;
+}

@@ -12,19 +12,25 @@
       <h1>Despertador</h1>
 
       <div class="inputs">
-        <div class="radio">
-          <input type="radio" id="in" name="in-at" value="in" />
-          <label for="in">in</label><br />
-          <input type="radio" id="at" name="in-at" value="at" />
-          <label for="at">at</label><br />
+        <div class="group">
+          <input class="em-as" type="radio" id="em" name="em-as" value="em" />
+          <label class="em-as" for="em">EM</label><br />
+          <input class="em-as" type="radio" id="as" name="em-as" value="as" />
+          <label class="em-as" for="as">AS</label><br />
         </div>
 
-        <input type="text" name="hora" id="hora" maxlength="2" size="2" />
-        <label for="hora">Horas</label>
-        <input type="text" name="minuto" id="minuto" maxlength="2" size="2" />
-        <label for="minuto">Minutos</label>
-        <input type="text" name="segundo" id="segundo" maxlength="2" size="2" />
-        <label for="segundos">Segundos</label>
+        <div class="group">
+          <input type="text" name="hora" id="hora" maxlength="2" size="2" />
+          <p class="hora-label">Horas</p>
+        </div>
+        <div class="group">
+          <input type="text" name="minuto" id="minuto" maxlength="2" size="2" />
+          <p class="minuto-label">Minutos</p>
+        </div>
+        <div class="group">
+          <input type="text" name="segundo" id="segundo" maxlength="2" size="2" />
+          <p class="segundo-label">Segundos</p>
+        </div>
       </div>
 
       <div class="timing">
@@ -36,9 +42,9 @@
       </div>
 
       <div class="btns">
-        <button>STOP</button>
-        <button>PLAY</button>
-        <button>PAUSE</button>
+        <a href="#" class="btn">STOP</a>
+        <a href="#" class="btn">PAUSE</a>
+        <a href="#" class="btn">PLAY</a>
       </div>
     </div>
 
