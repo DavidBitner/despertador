@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Despertador</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Despertador</h1>
+
+      <div class="inputs">
+        <div class="radio">
+          <input type="radio" id="in" name="in-at" value="in" />
+          <label for="in">in</label><br />
+          <input type="radio" id="at" name="in-at" value="at" />
+          <label for="at">at</label><br />
+        </div>
+
+        <input type="text" name="hora" id="hora" maxlength="2" size="2" />
+        <label for="hora">Horas</label>
+        <input type="text" name="minuto" id="minuto" maxlength="2" size="2" />
+        <label for="minuto">Minutos</label>
+        <input type="text" name="segundo" id="segundo" maxlength="2" size="2" />
+        <label for="segundos">Segundos</label>
+      </div>
+
+      <div class="timing">
+        <p class="horas-left">15</p>
+        :
+        <p class="minutos-left">15</p>
+        :
+        <p class="segundos-left">15</p>
+      </div>
+
+      <div class="btns">
+        <button>STOP</button>
+        <button>PLAY</button>
+        <button>PAUSE</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
