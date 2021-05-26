@@ -17,20 +17,21 @@ h1 {
   display: inline;
 }
 
-.inputs input {
-  font-size: 3rem;
-  width: 3.3rem;
-  display: inline-block;
-  position: relative;
-}
-
-.inputs label {
-  display: inline-block;
+.inputs {
+  padding: 10px;
 }
 
 .inputs .group {
   display: inline-block;
-  margin: 1rem;
+}
+
+.inputs .group-em-as {
+  display: inline-block;
+}
+
+.inputs .horario {
+  font-size: 3rem;
+  width: 3.3rem;
 }
 
 .timing {
@@ -38,16 +39,12 @@ h1 {
   font-size: 4rem;
 }
 
-.em-as {
-  margin: auto;
-  padding: auto;
-}
-
 .btns {
   padding: 1rem;
 }
 
 .btn {
+  display: inline-block;
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: bold;
@@ -55,11 +52,20 @@ h1 {
   text-decoration: none;
   color: white;
   border: 2px solid white;
+  cursor: pointer;
+  margin: 0 5px 0 5px;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  background-color: whitesmoke;
+  color: black;
 }
 
 .btn:active {
   color: black;
-  border: 2px solid black;
+  border: 2px solid white;
   background-color: white;
-  box-shadow: none;
+  box-shadow: 1px 1px 2px whitesmoke;
+  transform: translate(2px, 2px);
 }
