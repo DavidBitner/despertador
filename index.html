@@ -9,16 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <h1>Despertador</h1>
+      <h1 class="titulo">Despertador</h1>
+
+      <div class="group-em-as">
+        <input class="em-as" type="radio" id="em" name="em-as" value="em" />
+        <label class="em-as" id="label-em" for="em">EM</label>
+        <input class="em-as" type="radio" id="as" name="em-as" value="as" />
+        <label class="em-as" id="label-as" for="as">AS</label>
+      </div>
 
       <div class="inputs">
-        <div class="group-em-as">
-          <input class="em-as" type="radio" id="em" name="em-as" value="em" />
-          <label class="em-as" for="em">EM</label>
-          <input class="em-as" type="radio" id="as" name="em-as" value="as" />
-          <label class="em-as" for="as">AS</label>
-        </div>
-
         <div class="group">
           <input
             type="text"
@@ -29,7 +29,7 @@
             maxlength="2"
             size="2"
           />
-          <p class="hora-label">Horas</p>
+          <p class="hora-label">Hrs</p>
         </div>
         <div class="group">
           <input
@@ -41,7 +41,7 @@
             maxlength="2"
             size="2"
           />
-          <p class="minuto-label">Minutos</p>
+          <p class="minuto-label">Min</p>
         </div>
         <div class="group">
           <input
@@ -53,8 +53,12 @@
             maxlength="2"
             size="2"
           />
-          <p class="segundo-label">Segundos</p>
+          <p class="segundo-label">Seg</p>
         </div>
+      </div>
+
+      <div class="verificacao">
+        <p id="confirmacao">confirmação</p>
       </div>
 
       <div class="timing">
@@ -66,9 +70,9 @@
       </div>
 
       <div class="btns">
-        <a href="#" class="btn">STOP</a>
-        <a href="#" class="btn">PAUSE</a>
-        <a href="#" class="btn">PLAY</a>
+        <a href="#" id="stop" class="btn">STOP</a>
+        <a href="#" id="pause" class="btn">PAUSE</a>
+        <a href="#" id="play" class="btn">PLAY</a>
       </div>
     </div>
 
