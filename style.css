@@ -1,5 +1,5 @@
 body {
-  color: white;
+  color: #ffadb4;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -11,21 +11,28 @@ body {
 
 h1 {
   font-size: 2.5rem;
+  margin-top: 3rem;
 }
 
-.timing p {
-  display: inline;
+.group-em-as {
+  padding: 0.5rem;
 }
 
 .inputs {
   padding: 10px;
 }
 
-.inputs .group {
-  display: inline-block;
+.inputs input {
+  background-color: #ffadb4;
+  color: black;
+  border: none;
 }
 
-.inputs .group-em-as {
+.inputs input:focus {
+  box-shadow: 1px 1px 20px #ffadb4;
+}
+
+.inputs .group {
   display: inline-block;
 }
 
@@ -39,6 +46,10 @@ h1 {
   font-size: 4rem;
 }
 
+.timing p {
+  display: inline;
+}
+
 .btns {
   padding: 1rem;
 }
@@ -48,24 +59,37 @@ h1 {
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: bold;
-  box-shadow: 1px 1px 6px white;
+  box-shadow: 1px 1px 6px #ffadb4;
   text-decoration: none;
-  color: white;
-  border: 2px solid white;
+  color: #ffadb4;
+  border: 2px solid #ffadb4;
   cursor: pointer;
   margin: 0 5px 0 5px;
   border-radius: 3px;
 }
 
 .btn:hover {
-  background-color: whitesmoke;
+  background-color: #ffadb4;
   color: black;
 }
 
 .btn:active {
   color: black;
-  border: 2px solid white;
-  background-color: white;
-  box-shadow: 1px 1px 2px whitesmoke;
+  border: 2px solid #ffadb4;
+  background-color: #ffadb4;
+  box-shadow: 1px 1px 2px #ffadb4;
   transform: translate(2px, 2px);
+}
+
+/* Retirando arrows dos inputs*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
