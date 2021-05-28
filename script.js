@@ -19,8 +19,12 @@ const minuto_restante = document.querySelector(".minutos-left");
 const segundo_restante = document.querySelector(".segundos-left");
 
 const btn_stop = document.querySelector(`#stop`);
-const btn_pause = document.querySelector(`#pause`);
 const btn_play = document.querySelector(`#play`);
+
+const audio = document.querySelector('#my-audio')
+
+// Timers
+let timer, piscar_fundo;
 
 // Função de reset do despertador
 function reset() {
@@ -62,16 +66,86 @@ function confirmacao_text(
   }
 }
 
+// Piscar fundo
+function piscar() {
+  let num = 0;
+  const piscar_fundo = setInterval(() => {
+    const cores = ["blue", "white"];
+
+    if (num == 0) {
+      num = 1;
+    } else if (num == 1) {
+      num = 0;
+    }
+    document.body.style.backgroundColor = cores[num];
+  }, 200);
+
+  return piscar_fundo;
+}
+
 // Mudando visibilidade da confirmação para posteriormente usar
 confirmacao_text("hidden", "test");
 
 // Botão STOP
-btn_stop.addEventListener("click", reset);
+btn_stop.addEventListener("click", function () {
+  // Resetar despertador
+  reset();
+  clearInterval(timer);
 
-// Botão PAUSE
-btn_pause.addEventListener("click", function () {
-  return;
+  // Parar musica
+  audio.pause()
+
+  // Parar de piscar tela
+  clearInterval(piscar_fundo);
+  document.body.style.backgroundColor = "black";
+
+  // Habilitar botão play
+  btn_play.classList.remove("disabled-btn");
+  btn_play.style.opacity = "1";
 });
+
+// Função de timer do despertador
+function start_despertador(despertar) {
+  function tick() {
+    const hora = String(Math.trunc(time / 3600)).padStart(2, 0);
+    const temp = String(Math.trunc(time % 3600)).padStart(2, 0);
+    const min = String(Math.trunc(temp / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // Em cada chamada, printar o tempo restante na UI
+    hora_restante.textContent = hora;
+    minuto_restante.textContent = min;
+    segundo_restante.textContent = sec;
+
+    // Quando o timer atingir 0, despertar
+    if (time === 0) {
+      clearInterval(timer);
+
+      // Tocar musica
+      audio.play()
+
+      // Piscar fundo
+      piscar_fundo = piscar();
+
+      // Desabilitar botão play
+      btn_play.classList.add("disabled-btn");
+      btn_play.style.opacity = ".2";
+    }
+
+    // Tirar 1 seg
+    time--;
+  }
+
+  // Setar o timer
+  let time = despertar;
+
+  // Chamar o timer todo segundo
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  // Retornar o timer para reseta-lo
+  return timer;
+}
 
 // Botão PLAY
 btn_play.addEventListener("click", function () {
@@ -79,6 +153,15 @@ btn_play.addEventListener("click", function () {
     let validado = validar();
     if (validado) {
       confirmacao_text("visible", "Seu despertador irá tocar em: ");
+      let hora = Number(hora_input.value);
+      let minuto = Number(minuto_input.value);
+      let segundo = Number(segundo_input.value);
+      let total = (hora * 60 + minuto) * 60 + segundo;
+
+      if (timer) {
+        clearInterval(timer);
+      }
+      timer = start_despertador(total);
     } else {
       confirmacao_text(
         "visible",
