@@ -26,6 +26,7 @@ h1 {
   background-color: #ffadb4;
   color: black;
   border: none;
+  text-align: center;
 }
 
 .inputs input:focus {
