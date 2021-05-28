@@ -82,6 +82,10 @@ h1 {
   transform: translate(2px, 2px);
 }
 
+.disabled-btn {
+  pointer-events: none;
+}
+
 /* Retirando arrows dos inputs*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
