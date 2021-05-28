@@ -22,9 +22,6 @@ const btn_stop = document.querySelector(`#stop`);
 const btn_pause = document.querySelector(`#pause`);
 const btn_play = document.querySelector(`#play`);
 
-// Mudando visibilidade da confirmação para posteriormente usar
-confirmacao.style.visibility = `hidden`;
-
 // Função de reset do despertador
 function reset() {
   hora_restante.textContent = "00";
@@ -34,25 +31,81 @@ function reset() {
 
 reset();
 
+// Função para validar se o despertador é valido
+function validar() {
+  if (
+    Number(hora_input.value) >= 0 &&
+    Number(hora_input.value <= 23) &&
+    Number(minuto_input.value >= 0) &&
+    Number(minuto_input.value <= 59) &&
+    Number(segundo_input.value >= 0) &&
+    Number(segundo_input.value <= 59)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Função de confirmação
+function confirmacao_text(
+  visi = "visible",
+  confirmacao_txt = "",
+  confirmacao_cor = "#ffadb4"
+) {
+  if (visi == "visible") {
+    confirmacao.style.visibility = visi;
+    confirmacao.style.color = confirmacao_cor;
+    confirmacao.textContent = confirmacao_txt;
+  } else {
+    confirmacao.style.visibility = "hidden";
+  }
+}
+
+// Mudando visibilidade da confirmação para posteriormente usar
+confirmacao_text("hidden", "test");
+
 // Botão STOP
 btn_stop.addEventListener("click", reset);
 
 // Botão PAUSE
 btn_pause.addEventListener("click", function () {
-  return
+  return;
 });
 
 // Botão PLAY
 btn_play.addEventListener("click", function () {
   if (radio_em.checked) {
-    if (hora_input.value && minuto_input.value && segundo_input.value) {
-      confirmacao.style.visibility = "visible";
-      confirmacao.textContent = `Validado`;
+    let validado = validar();
+    if (validado) {
+      confirmacao_text("visible", "Seu despertador irá tocar em: ");
     } else {
-      confirmacao.style.visibility = "visible";
-      confirmacao.textContent = `Invalidado`;
+      confirmacao_text(
+        "visible",
+        "Valor inválido, por favor digite um valor válido!",
+        "red"
+      );
     }
   } else if (radio_as.checked) {
-    
+    let validado = validar();
+    if (validado) {
+      let horas = !!hora_input.value ? hora_input.value.padStart(2, "0") : `00`;
+      let minutos = !!minuto_input.value
+        ? minuto_input.value.padStart(2, "0")
+        : `00`;
+      let segundos = !!segundo_input.value
+        ? segundo_input.value.padStart(2, "0")
+        : `00`;
+      confirmacao_text(
+        "visible",
+        `Seu despertador irá tocar as ${horas}:${minutos}:${segundos} em: `
+      );
+    } else {
+      confirmacao_text(
+        "visible",
+        "Valor inválido, por favor digite um valor válido!",
+        "red"
+      );
+    }
   }
 });
