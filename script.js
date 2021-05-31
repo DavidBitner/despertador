@@ -21,7 +21,7 @@ const segundo_restante = document.querySelector(".segundos-left");
 const btn_stop = document.querySelector(`#stop`);
 const btn_play = document.querySelector(`#play`);
 
-const audio = document.querySelector('#my-audio')
+const audio = document.querySelector("#my-audio");
 
 // Timers
 let timer, piscar_fundo;
@@ -93,7 +93,7 @@ btn_stop.addEventListener("click", function () {
   clearInterval(timer);
 
   // Parar musica
-  audio.pause()
+  audio.pause();
 
   // Parar de piscar tela
   clearInterval(piscar_fundo);
@@ -122,7 +122,7 @@ function start_despertador(despertar) {
       clearInterval(timer);
 
       // Tocar musica
-      audio.play()
+      audio.play();
 
       // Piscar fundo
       piscar_fundo = piscar();
@@ -147,20 +147,75 @@ function start_despertador(despertar) {
   return timer;
 }
 
+// Função que vai retornar tempo restante para despertar
+function calcular_data(h = 0, m = 0, s = 0) {
+  const agora = new Date();
+  let despertar = 0;
+  let diff = 0;
+  const agora_hora = agora.getHours();
+  const agora_min = agora.getMinutes();
+  let total = 0;
+
+  if (h > agora_hora) {
+    despertar = new Date(
+      agora.getFullYear(),
+      agora.getMonth(),
+      agora.getDate(),
+      h,
+      m,
+      s
+    );
+    diff = Math.abs(despertar - agora);
+
+    total = Math.trunc(diff / 1000);
+  } else if (h == agora_hora && m >= agora_min) {
+    despertar = new Date(
+      agora.getFullYear(),
+      agora.getMonth(),
+      agora.getDate(),
+      h,
+      m,
+      s
+    );
+    diff = Math.abs(despertar - agora);
+
+    total = Math.trunc(diff / 1000);
+  } else {
+    despertar = new Date(
+      agora.getFullYear(),
+      agora.getMonth(),
+      agora.getDate() + 1,
+      h,
+      m,
+      s
+    );
+    diff = Math.abs(despertar - agora);
+
+    total = Math.trunc(diff / 1000);
+  }
+
+  return total;
+}
+
 // Botão PLAY
 btn_play.addEventListener("click", function () {
+  let validado = validar();
+  let hora = 0;
+  let minuto = 0;
+  let segundo = 0;
+  let total = 0;
   if (radio_em.checked) {
-    let validado = validar();
     if (validado) {
       confirmacao_text("visible", "Seu despertador irá tocar em: ");
-      let hora = Number(hora_input.value);
-      let minuto = Number(minuto_input.value);
-      let segundo = Number(segundo_input.value);
-      let total = (hora * 60 + minuto) * 60 + segundo;
+      hora = Number(hora_input.value);
+      minuto = Number(minuto_input.value);
+      segundo = Number(segundo_input.value);
+      total = (hora * 60 + minuto) * 60 + segundo;
 
       if (timer) {
         clearInterval(timer);
       }
+
       timer = start_despertador(total);
     } else {
       confirmacao_text(
@@ -170,19 +225,26 @@ btn_play.addEventListener("click", function () {
       );
     }
   } else if (radio_as.checked) {
-    let validado = validar();
     if (validado) {
-      let horas = !!hora_input.value ? hora_input.value.padStart(2, "0") : `00`;
-      let minutos = !!minuto_input.value
+      hora = !!hora_input.value ? hora_input.value.padStart(2, "0") : `00`;
+      minuto = !!minuto_input.value
         ? minuto_input.value.padStart(2, "0")
         : `00`;
-      let segundos = !!segundo_input.value
+      segundo = !!segundo_input.value
         ? segundo_input.value.padStart(2, "0")
         : `00`;
       confirmacao_text(
         "visible",
-        `Seu despertador irá tocar as ${horas}:${minutos}:${segundos} em: `
+        `Seu despertador irá tocar as ${hora}:${minuto}:${segundo} em: `
       );
+
+      total = calcular_data(hora, minuto, segundo);
+
+      if (timer) {
+        clearInterval(timer);
+      }
+
+      timer = start_despertador(total);
     } else {
       confirmacao_text(
         "visible",
